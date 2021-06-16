@@ -11,7 +11,8 @@ class Game:
     def run_game(self):
         self.welcome()
         self.choose_game_mode()
-        ai.choose_gesture()
+        self.player_one.choose_gesture()
+        self.player_two.choose_gesture()
 
 
     def welcome(self):
@@ -28,6 +29,7 @@ class Game:
                 self.player_two = Human()
             else:
                 self.player_two = AI()
+
 
         # Game Rounds
         # Player one chooses gesture
