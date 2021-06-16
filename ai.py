@@ -1,8 +1,12 @@
 from player import Player
+import random
+
 
 class AI(Player):
-    pass
+    def __init__(self):
+        super().__init__()
 
-    def choose_gesture(self):
-        # random
-        pass
+
+    def choose_gesture(Player):
+        self.chosen_gesture = self.gestures[random.randint(0,4)]
+        print(chosen_gesture)
