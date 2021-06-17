@@ -1,10 +1,8 @@
 from player import Player
-
 class Human(Player):
     def __init__(self):
         super().__init__()
         self.score = 0
-
     def choose_gesture(self):
         gesture_index = 0
         for gesture in self.gestures:
