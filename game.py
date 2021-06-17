@@ -4,10 +4,8 @@ class Game:
     def __init__(self):
         self.player_one = Human()
         self.player_two = None
-        self.win_conditions = (
-            ('0', '2'), ('2', '1'), ('1', '0'), ('0', '3'), ('3', '4'), ('4', '2'), ('2', '3'), ('3', '1'),
-            ('1', '4'), ('4', '0')
-        )
+        self.win_conditions = (('0', '2'), ('2', '1'), ('1', '0'), ('0', '3'), ('3', '4'), ('4', '2'),
+                               ('2', '3'), ('3', '1'),('1', '4'), ('4', '0'))
     def run_game(self):
         self.welcome()
         self.choose_game_mode()
@@ -50,12 +48,15 @@ class Game:
     def best_of_three(self):
         if self.player_one.score == 2:
             print("Player 1 wins best of 3")
+            print()
             self.play_again()
         elif self.player_two.score == 2:
             print("Player 2 wins best of 3!")
+            print()
             self.play_again()
         else:
             print("next round, first player to win twice is the winner!")
+            print()
             self.play_round()
     def play_again(self):
         while True:
