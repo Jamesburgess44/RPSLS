@@ -33,8 +33,11 @@ class Game:
             response = input()
             if response == "2":
                 self.player_two = Human()
-            else:
+            elif response == "1":
                 self.player_two = AI()
+            else:
+                print("please enter 1 or 2")
+                self.choose_game_mode()
 
     def play_round(self):
         self.player_one.choose_gesture()
@@ -77,11 +80,7 @@ class Game:
                 break
             else:
                 print("That is not a valid response. Please try again.")
-        # Loop to continue gameplay until best of three occurs
-
-        # End Game
-        # Display winner of game
-        # Prompt to play again? - Not MVP
+        
 
 
 
