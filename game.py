@@ -6,7 +6,10 @@ class Game:
     def __init__(self):
         self.player_one = Human()
         self.player_two = None
-        self.win_conditions = ((0, 2), (2, 1), (1, 0), (0, 3), (3, 4), (4, 2), (2, 3), (3, 1), (1, 4), (4, 0))
+        self.win_conditions = (
+            ('0', '2'), ('2', '1'), ('1', '0'), ('0', '3'), ('3', '4'), ('4', '2'), ('2', '3'), ('3', '1'),
+            ('1', '4'), ('4', '0')
+        )
 
 
 
@@ -14,6 +17,7 @@ class Game:
         self.welcome()
         self.choose_game_mode()
         self.choose_winner()
+        self.best_of_three()
 
 
     def welcome(self):
@@ -30,14 +34,26 @@ class Game:
                 self.player_two = Human()
             else:
                 self.player_two = AI()
+
     def choose_winner(self):
-        if (self.player_one.choose_gesture()) == (self.player_two.choose_gesture()):
+        self.player_one.choose_gesture()
+        self.player_two.choose_gesture()
+        if self.player_one.chosen_gesture == self.player_two.chosen_gesture:
             print("Its a tie, play again!")
-        elif ((self.player_one.chosen_gesture),(self.player_two.chosen_gesture)) in self.win_conditions():
+        elif (self.player_one.chosen_gesture, self.player_two.chosen_gesture) in self.win_conditions:
             print("Player one is the winner!")
+            self.player_one.score += 1
         else:
             print("Player two is the winner!")
-        # Determine winner of round, winner's score increases
+            self.player_two.score += 1
+
+    def best_of_three(self):
+        if self.player_one.score == 2:
+            print("Player 1 wins")
+        elif self.player_two.score == 2:
+            print("Player 2 wins!")
+        else:
+            self.choose_winner()
         # Loop to continue gameplay until best of three occurs
 
         # End Game
