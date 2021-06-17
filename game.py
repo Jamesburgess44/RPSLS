@@ -40,11 +40,14 @@ class Game:
         self.player_two.choose_gesture()
         if self.player_one.chosen_gesture == self.player_two.chosen_gesture:
             print("Its a tie, play again!")
+            print()
         elif (self.player_one.chosen_gesture, self.player_two.chosen_gesture) in self.win_conditions:
             print("Player one is the winner!")
+            print()
             self.player_one.score += 1
         else:
             print("Player two is the winner!")
+            print()
             self.player_two.score += 1
 
     def best_of_three(self):
@@ -53,6 +56,7 @@ class Game:
         elif self.player_two.score == 2:
             print("Player 2 wins!")
         else:
+            print("next round, first player to win twice is the winner!")
             self.choose_winner()
         # Loop to continue gameplay until best of three occurs
 
