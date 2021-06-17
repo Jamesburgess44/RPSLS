@@ -16,8 +16,9 @@ class Game:
     def run_game(self):
         self.welcome()
         self.choose_game_mode()
-        self.choose_winner()
+        self.play_round()
         self.best_of_three()
+        self.play_again()
 
 
     def welcome(self):
@@ -35,29 +36,47 @@ class Game:
             else:
                 self.player_two = AI()
 
-    def choose_winner(self):
+    def play_round(self):
         self.player_one.choose_gesture()
         self.player_two.choose_gesture()
         if self.player_one.chosen_gesture == self.player_two.chosen_gesture:
             print("Its a tie, play again!")
             print()
+            self.best_of_three()
         elif (self.player_one.chosen_gesture, self.player_two.chosen_gesture) in self.win_conditions:
             print("Player one is the winner!")
             print()
             self.player_one.score += 1
+            self.best_of_three()
         else:
             print("Player two is the winner!")
             print()
             self.player_two.score += 1
+            self.best_of_three()
 
     def best_of_three(self):
         if self.player_one.score == 2:
-            print("Player 1 wins")
+            print("Player 1 wins best of 3")
+            self.play_again()
         elif self.player_two.score == 2:
-            print("Player 2 wins!")
+            print("Player 2 wins best of 3!")
+            self.play_again()
         else:
             print("next round, first player to win twice is the winner!")
-            self.choose_winner()
+            self.play_round()
+
+
+    def play_again(self):
+        while True:
+            replay_answer = input("Do you want to play again?(y/n)")
+            if replay_answer == "y":
+                self.run_game()
+                break
+            elif replay_answer == "n":
+                print("Thank you for playing!")
+                break
+            else:
+                print("That is not a valid response. Please try again.")
         # Loop to continue gameplay until best of three occurs
 
         # End Game

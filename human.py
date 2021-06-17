@@ -3,6 +3,7 @@ from player import Player
 class Human(Player):
     def __init__(self):
         super().__init__()
+        self.score = 0
 
     def choose_gesture(self):
         gesture_index = 0
@@ -10,7 +11,12 @@ class Human(Player):
             print(f"Choose {gesture_index} for {gesture}.")
             gesture_index += 1
         human_input = input("Choose your gesture.")
-        self.chosen_gesture = str(human_input)
+        if human_input in ("0", "1", "2", "3", "4"):
+            self.chosen_gesture = human_input
+        else:
+            print("Please enter number value 0-4 to choose gesture")
+            self.choose_gesture()
+
 
 
 
