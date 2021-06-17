@@ -61,13 +61,17 @@ class Game:
         while True:
             replay_answer = input("Do you want to play again?(y/n)")
             if replay_answer == "y":
-                self.run_game()
+                self.clear_score()
                 break
             elif replay_answer == "n":
                 print("Thank you for playing!")
                 break
             else:
                 print("That is not a valid response. Please try again.")
+    def clear_score(self):
+        self.player_one.score = 0
+        self.player_two.score = 0
+        self.run_game()
 
 
 
